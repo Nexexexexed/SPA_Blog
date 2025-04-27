@@ -13,7 +13,9 @@ export const fetchPosts = () => async (dispatch: AppDispatch) => {
     dispatch(setPostsSuccess(posts));
   } catch (error) {
     dispatch(
-      setPostsFailure(error instanceof Error ? error.message : "Unknown error")
+      setPostsFailure(
+        error instanceof Error ? error.message : "Непредвиденная ошибка"
+      )
     );
   }
 };

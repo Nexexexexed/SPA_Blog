@@ -1,0 +1,10 @@
+.home_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .news_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+}

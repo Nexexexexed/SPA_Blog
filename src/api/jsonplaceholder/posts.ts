@@ -19,9 +19,15 @@ export const fetchPostById = async (id: number): Promise<Post> => {
   return response.data;
 };
 
+//здесь реализовал частично серверную фильтрацию, так как JSONPlaceholder не имеет GET запроса для полного совпадения, поэтому используется title_like для частичной и дополнительный фильтр для жесткой фильтрации
 export const searchPosts = async (query: string): Promise<Post[]> => {
-  const response = await axios.get(API_URL);
-  return response.data.filter((post: Post) => {
-    post.title.toLowerCase().includes(query.toLowerCase());
-  });
+  if (!query.trim()) return [];
+  const response = await axios.get(
+    `https://jsonplaceholder.typicode.com/posts?title_like=${encodeURIComponent(
+      query
+    )}`
+  );
+  return response.data.filter(
+    (post: Post) => post.title.toLowerCase() === query.toLowerCase()
+  );
 };

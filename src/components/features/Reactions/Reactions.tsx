@@ -37,7 +37,7 @@ export const Reactions = ({ postId, className }: ReactionProps) => {
         variant={userReaction === "like" ? "primary" : "secondary"}
         aria-label="Like"
       >
-        <svg>{like}</svg>
+        <img src={like}></img>
         {likes}
       </Button>
       <Button
@@ -45,7 +45,7 @@ export const Reactions = ({ postId, className }: ReactionProps) => {
         variant={userReaction === "dislike" ? "primary" : "secondary"}
         aria-label="Dislike"
       >
-        <svg>{dislike}</svg>
+        <img src={dislike}></img>
         {dislikes}
       </Button>
     </div>
