@@ -37,7 +37,7 @@ const postsSlice = createSlice({
       state.posts = action.payload;
 
       action.payload.forEach((post) => {
-        if (state.reactions[post.id]) {
+        if (!state.reactions[post.id]) {
           state.reactions[post.id] = {
             likes: Math.floor(Math.random() * 50),
             dislikes: Math.floor(Math.random() * 50),
