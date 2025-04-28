@@ -27,7 +27,7 @@ export const searchPosts = async (query: string): Promise<Post[]> => {
       query
     )}`
   );
-  return response.data.filter(
-    (post: Post) => post.title.toLowerCase() === query.toLowerCase()
+  return response.data.filter((post: Post) =>
+    post.title.toLowerCase().includes(query.toLowerCase())
   );
 };

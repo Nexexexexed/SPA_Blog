@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { ActionReducerMapBuilder } from "@reduxjs/toolkit";
+import type {
+  ActionReducerMapBuilder,
+  SerializedError,
+} from "@reduxjs/toolkit";
 import { Post } from "../../api/jsonplaceholder/posts";
 import { searchPostsThunk } from "../thunks/searchPosts";
 
@@ -15,7 +18,6 @@ interface Reactions {
 interface PostsState {
   posts: Post[];
   searchResults: Post[] | null;
-  searchQuery: string;
   loading: boolean;
   error: string | null;
   reactions: Record<number, Reactions>;
@@ -24,7 +26,6 @@ interface PostsState {
 const initialState: PostsState = {
   posts: [],
   searchResults: null,
-  searchQuery: "",
   loading: false,
   error: null,
   reactions: {},
@@ -61,11 +62,9 @@ const postsSlice = createSlice({
       action: PayloadAction<{ results: Post[]; query: string }>
     ) {
       state.searchResults = action.payload.results ?? [];
-      state.searchQuery = action.payload.query;
     },
     clearSearchResults(state) {
       state.searchResults = null;
-      state.searchQuery = "";
     },
     setReaction(
       state,
@@ -95,30 +94,32 @@ const postsSlice = createSlice({
         current.userReaction = reaction;
       }
     },
-    extraReducers: (builder: ActionReducerMapBuilder<PostsState>) => {
-      builder
-        .addCase(searchPostsThunk.pending, (state: PostsState) => {
-          state.loading = true;
-        })
-        .addCase(
-          searchPostsThunk.fulfilled,
-          (
-            state: PostsState,
-            action: PayloadAction<Post[], string, { arg: string }>
-          ) => {
-            state.loading = false;
-            state.searchResults = action.payload;
-            state.searchQuery = action.meta.arg;
-          }
-        )
-        .addCase(
-          searchPostsThunk.rejected,
-          (state: PostsState, action: { error: { message: string } }) => {
-            state.loading = false;
-            state.error = action.error.message || "Ошибка поиска";
-          }
-        );
-    },
+  },
+  extraReducers: (builder: ActionReducerMapBuilder<PostsState>) => {
+    builder
+      .addCase(searchPostsThunk.pending, (state: PostsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        searchPostsThunk.fulfilled,
+        (
+          state: PostsState,
+          action: PayloadAction<Post[], string, { arg: string }>
+        ) => {
+          state.loading = false;
+          state.searchResults = action.payload;
+        }
+      )
+      .addCase(
+        searchPostsThunk.rejected,
+        (
+          state: PostsState,
+          action: PayloadAction<unknown, string, never, SerializedError>
+        ) => {
+          state.loading = false;
+          state.error = action.error?.message || "Ошибка поиска";
+        }
+      );
   },
 });
 

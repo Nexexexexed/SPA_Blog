@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { searchPosts as apiSearchPosts } from "../../api/jsonplaceholder/posts";
+import { searchPosts } from "../../api/jsonplaceholder/posts";
 
 export const searchPostsThunk = createAsyncThunk(
   "posts/search",
   async (query: string, { rejectWithValue }) => {
     try {
-      const results = await apiSearchPosts(query);
-      return results;
+      const response = await searchPosts(query);
+      return response;
     } catch (error) {
       return rejectWithValue(
         error instanceof Error ? error.message : "Неизвестная ошибка"
