@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setReaction } from "../../../store/slices/postsSlice";
+import { setReaction } from "../../../store/posts/postsSlice";
 import { Button } from "../../common/Button/Button";
 
-import like from "/public/like.svg";
-import dislike from "/public/dislike.svg";
+import like_image from "/public/like.svg";
+import dislike_image from "/public/dislike.svg";
 
 const DEFAULT_REACTIONS = {
   likes: 0,
@@ -17,7 +17,7 @@ interface ReactionProps {
 }
 
 export const Reactions = ({ postId, className }: ReactionProps) => {
-  const { likes, dislikes, userReaction } = useAppSelector(
+  const { like, dislike, userReaction } = useAppSelector(
     (state) => state.posts.reactions[postId] || DEFAULT_REACTIONS
   );
   const dispatch = useAppDispatch();
@@ -37,16 +37,16 @@ export const Reactions = ({ postId, className }: ReactionProps) => {
         variant={userReaction === "like" ? "primary" : "secondary"}
         aria-label="Like"
       >
-        <img src={like}></img>
-        {likes}
+        <img src={like_image}></img>
+        {like}
       </Button>
       <Button
         onClick={handleDislike}
         variant={userReaction === "dislike" ? "primary" : "secondary"}
         aria-label="Dislike"
       >
-        <img src={dislike}></img>
-        {dislikes}
+        <img src={dislike_image}></img>
+        {dislike}
       </Button>
     </div>
   );

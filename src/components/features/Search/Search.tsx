@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppDispatch } from "../../../store/hooks";
-import { searchPostsThunk } from "../../../store/thunks/searchPosts";
-import { clearSearchResults } from "../../../store/slices/postsSlice";
+import { searchPostsThunk } from "../../../store/posts/postsThunk";
+import { clearSearchResults } from "../../../store/posts/postsSlice";
 
 import shape from "/public/shape.svg";
 

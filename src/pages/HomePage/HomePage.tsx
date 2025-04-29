@@ -3,10 +3,14 @@ import { PostCard } from "../../components/features/PostCard/PostCard";
 import { PostHero } from "../../components/features/PostHero/PostHero";
 import styles from "./HomePage.module.scss";
 import { Search } from "../../components/features/Search/Search";
-import { fetchPosts } from "../../store/fetchPosts";
+import { fetchPostsThunk } from "../../store/posts/postsThunk";
 import { useEffect } from "react";
 
-export const HomePage = () => {
+export const HomePage = ({
+  setNewsId,
+}: {
+  setNewsId: (id: number) => void;
+}) => {
   const dispatch = useAppDispatch();
   const { posts, searchResults, loading, error } = useAppSelector(
     (state) => state.posts
@@ -15,7 +19,7 @@ export const HomePage = () => {
   useEffect(() => {
     if (posts.length === 0) {
       setTimeout(() => {
-        dispatch(fetchPosts());
+        dispatch(fetchPostsThunk());
       }, 1000);
     }
   }, [dispatch, posts.length]);
@@ -34,10 +38,10 @@ export const HomePage = () => {
         <div>Загрузка новостей...</div>
       ) : hasPosts ? (
         <div>
-          <PostHero post={displayedPosts[0]} />
+          <PostHero post={displayedPosts[0]} setNewsId={setNewsId} />
           <div className={styles.news_list}>
             {displayedPosts.slice(1).map((post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} setNewsId={setNewsId} />
             ))}
           </div>
         </div>
