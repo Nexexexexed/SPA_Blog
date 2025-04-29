@@ -2,9 +2,41 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  h1 {
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 68px;
+    text-align: center;
+    vertical-align: bottom;
+  }
+  .block_main_text {
+    margin: auto;
+    width: 1200px;
+    .main_text {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 32px;
+      vertical-align: bottom;
+    }
+  }
+
   .news_list {
+    width: 1200px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    gap: 2.5rem;
+  }
+
+  .loading {
+    position: relative;
+    font-size: 25px;
+    top: 50%;
+  }
+
+  .no_results {
+    position: relative;
+    font-size: 25px;
+    top: 50%;
   }
 }

@@ -31,11 +31,20 @@ export const HomePage = ({
 
   return (
     <div className={styles.home_page}>
-      <h1>Блог</h1>
-      <Search />
+      <header>
+        <h1>Блог</h1>
+        <div className={styles.block_main_text}>
+          <p className={styles.main_text}>
+            Здесь мы делимся интересными кейсами из наших проектов, пишем про
+            IT, а также переводим зарубежные статьи
+          </p>
+        </div>
+
+        <Search />
+      </header>
 
       {loading ? (
-        <div>Загрузка новостей...</div>
+        <div className={styles.loading}>Загрузка новостей...</div>
       ) : hasPosts ? (
         <div>
           <PostHero post={displayedPosts[0]} setNewsId={setNewsId} />

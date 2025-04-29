@@ -1,0 +1,28 @@
+.input_block {
+  position: relative;
+  display: flex;
+
+  margin-top: 3%;
+  margin-bottom: 3%;
+  .input_search {
+    width: 100%;
+    padding: 10px;
+    padding-left: 3%;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+
+  .image_shape {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

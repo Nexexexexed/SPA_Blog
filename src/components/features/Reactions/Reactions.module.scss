@@ -1,0 +1,36 @@
+.reactions {
+  display: flex;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: fill 0.3s ease;
+}
+
+.likeActive {
+  filter: invert(24%) sepia(84%) saturate(2000%) hue-rotate(86deg)
+    brightness(80%) contrast(120%);
+}
+
+.dislikeActive {
+  filter: invert(22%) sepia(61%) saturate(10000%) hue-rotate(12deg)
+    brightness(75%) contrast(120%);
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+button[aria-label="Like"] {
+  color: green;
+}
+
+button[aria-label="Dislike"] {
+  color: red;
+}

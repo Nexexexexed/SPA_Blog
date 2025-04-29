@@ -1,0 +1,31 @@
+.postcard {
+  box-shadow: 10px 15px 20px 0px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  width: 580px;
+  margin-bottom: 5%;
+  border-radius: 1%;
+
+  .postcard_image {
+    border-radius: 1% 1% 0 0;
+  }
+  .postcard_block {
+    padding: 1rem;
+
+    .foonter_postcard {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button_more {
+      padding: 1%;
+      border-radius: 5rem;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 100%;
+      vertical-align: bottom;
+      border: 2px black solid;
+    }
+  }
+}

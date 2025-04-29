@@ -27,9 +27,15 @@ export const PostHero = ({
         <div className={styles.title_block}>
           <h3 className={styles.heroTitle}>{post.title}</h3>
           <Reactions postId={post.id} className={`${post.id}`} />
-          <button onClick={() => setNewsId(post.id)}>Читать далее</button>
         </div>
         <p>{post.body}</p>
+
+        <button
+          className={styles.button_more}
+          onClick={() => setNewsId(post.id)}
+        >
+          Читать далее
+        </button>
       </div>
     </article>
   );

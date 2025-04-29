@@ -1,0 +1,46 @@
+.loading {
+  position: absolute;
+  left: 50%;
+  font-size: 40px;
+}
+
+.main_post {
+  display: flex;
+  flex-direction: column;
+  margin: 2.5% 15%;
+
+  .header_page {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5%;
+
+    .button_back {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 24px;
+      transition: color 0.25s ease-in-out;
+      &:hover {
+        color: rgb(199, 123, 0);
+      }
+    }
+  }
+
+  .body {
+    width: 848px; //лучше конечно не в пикселях, а через flex подгонять текст и картинку, но так как изображение статичное, решил что лучше сделать так
+    margin: 0 auto;
+
+    .text_post {
+      font-weight: 400;
+      font-size: 18px;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+  }
+}

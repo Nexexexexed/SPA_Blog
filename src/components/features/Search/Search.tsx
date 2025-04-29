@@ -5,6 +5,8 @@ import { clearSearchResults } from "../../../store/posts/postsSlice";
 
 import shape from "/public/shape.svg";
 
+import styles from "./Search.module.scss";
+
 export const Search = () => {
   const [inputValue, setinputValue] = useState("");
   const dispatch = useAppDispatch();
@@ -22,15 +24,16 @@ export const Search = () => {
   }, [inputValue, dispatch]);
 
   return (
-    <div>
+    <div className={styles.input_block}>
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setinputValue(e.target.value)}
         placeholder="Поиск по названию статьи "
         aria-label="Поиск постов"
+        className={styles.input_search}
       ></input>
-      <span>
+      <span className={styles.image_shape}>
         <img src={shape}></img>
       </span>
     </div>

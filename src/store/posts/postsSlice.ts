@@ -36,19 +36,27 @@ const postsSlice = createSlice({
     },
     setReaction(
       state,
-      action: PayloadAction<{ postId: number; reaction: ReactionType }>
+      action: PayloadAction<{
+        postId: number;
+        reaction: ReactionType | undefined;
+      }>
     ) {
       const { postId, reaction } = action.payload;
-      const current = state.reactions[postId] ?? {
+      const prev = state.reactions[postId] ?? {
         like: 0,
         dislike: 0,
         userReaction: undefined,
       };
 
-      if (current.userReaction === reaction) {
+      const current: Reactions = { ...prev };
+
+      if (reaction === undefined && current.userReaction) {
+        current[current.userReaction] -= 1;
+        current.userReaction = undefined;
+      } else if (current.userReaction === reaction && reaction !== undefined) {
         current[reaction] -= 1;
         current.userReaction = undefined;
-      } else {
+      } else if (reaction !== undefined) {
         if (current.userReaction) {
           current[current.userReaction] -= 1;
         }
